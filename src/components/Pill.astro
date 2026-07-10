@@ -1,0 +1,23 @@
+---
+interface Props {
+  color?: 'marigold' | 'coral' | 'sky-wash' | 'sky-tint' | 'midnight-ink' | 'mocha' | 'saffron' | 'vermillion';
+  class?: string;
+}
+const { color = 'sky-tint', class: className = '' } = Astro.props;
+const colorMap: Record<string, string> = {
+  'marigold': 'bg-marigold text-ink-black',
+  'coral': 'bg-coral text-pure-white',
+  'sky-wash': 'bg-sky-wash text-ink-black',
+  'sky-tint': 'bg-sky-tint text-notion-blue',
+  'midnight-ink': 'bg-midnight-ink text-pure-white',
+  'mocha': 'bg-mocha text-pure-white',
+  'saffron': 'bg-saffron text-ink-black',
+  'vermillion': 'bg-vermillion text-pure-white',
+};
+---
+
+<span
+  class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${colorMap[color]} ${className}`}
+>
+  <slot />
+</span>

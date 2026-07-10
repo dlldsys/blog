@@ -1,0 +1,19 @@
+---
+interface Props {
+  color?: 'marigold' | 'coral' | 'sky-wash' | 'mocha' | 'saffron' | 'vermillion';
+  class?: string;
+}
+const { color = 'marigold', class: className = '' } = Astro.props;
+const colorMap: Record<string, string> = {
+  'marigold': 'bg-marigold text-ink-black',
+  'coral': 'bg-coral text-pure-white',
+  'sky-wash': 'bg-sky-wash text-ink-black',
+  'mocha': 'bg-mocha text-pure-white',
+  'saffron': 'bg-saffron text-ink-black',
+  'vermillion': 'bg-vermillion text-pure-white',
+};
+---
+
+<div class={`rounded-xl p-6 ${colorMap[color]} ${className}`}>
+  <slot />
+</div>

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const tagMap = new Map<string, number>();
+posts.forEach((post) => {
+  post.data.tags.forEach((tag) => {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  });
+});
+const tags = [...tagMap.entries()].sort((a, b) => b[1] - a[1]);
+const tagColorClasses = [
+  'bg-marigold text-ink-black',
+  'bg-coral text-pure-white',
+  'bg-sky-wash text-ink-black',
+  'bg-mocha text-pure-white',
+  'bg-saffron text-ink-black',
+  'bg-vermillion text-pure-white',
+];
+---
+
+<BaseLayout title="标签 — Notion 风格博客" description="按标签浏览文章">
+  <section class="mx-auto max-w-[1440px] px-6 pt-16 pb-16">
+    <SectionHeader title="标签" subtitle={`${tags.length} 个标签`} />
+
+    <div class="flex flex-wrap gap-3 mt-8">
+      {tags.map(([tag, count], i) => (
+        <a
+          href={`/tags/${tag}/`}
+          class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 ${tagColorClasses[i % tagColorClasses.length]}`}
+        >
+          #{tag}
+          <span class="text-xs opacity-60">{count}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+import Pill from '@components/Pill.astro';
+import Comments from '@components/Comments.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  prev?: { slug: string; title: string };
+  next?: { slug: string; title: string };
+}
+
+const { post, prev, next } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = post.data;
+const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
+
+const content = post.body ?? '';
+const wordsPerMinute = 200;
+const wordCount = content.split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+---
+
+<BaseLayout title={`${title} — Notion 风格博客`} description={description}>
+  <article>
+    <header class="mx-auto max-w-[720px] px-6 pt-16 pb-8">
+      <div class="flex flex-wrap gap-2 mb-6">
+        {tags.map((tag, i) => (
+          <a href={`/tags/${tag}/`}>
+            <Pill color={tagColors[i % tagColors.length]}>{tag}</Pill>
+          </a>
+        ))}
+      </div>
+
+      <h1
+        class="font-semibold text-ink-black mb-4"
+        style="font-size: var(--text-display); line-height: 1.04; letter-spacing: -2.016px;"
+      >
+        {title}
+      </h1>
+
+      <p
+        class="font-lyon-text text-graphite mb-6"
+        style="font-size: 18px; line-height: 1.56;"
+      >
+        {description}
+      </p>
+
+      <div class="flex items-center gap-3 text-sm text-ink-black/40">
+        <FormattedDate date={pubDate} />
+        <span>·</span>
+        <span>{readingTime} 分钟阅读</span>
+        {updatedDate && (
+          <>
+            <span>·</span>
+            <span>更新于 <FormattedDate date={updatedDate} /></span>
+          </>
+        )}
+      </div>
+    </header>
+
+    <div class="prose px-6 pb-12">
+      <slot />
+    </div>
+
+    {(prev || next) && (
+      <nav class="mx-auto max-w-[720px] px-6 py-8 border-t border-ink-black/[0.08]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {prev ? (
+            <a
+              href={`/blog/${prev.slug}/`}
+              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-4 transition-all duration-200 hover:border-ink-black/[0.15] group"
+            >
+              <span class="text-xs text-ink-black/40">← 上一篇</span>
+              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1">
+                {prev.title}
+              </p>
+            </a>
+          ) : <div />}
+          {next ? (
+            <a
+              href={`/blog/${next.slug}/`}
+              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-4 text-right transition-all duration-200 hover:border-ink-black/[0.15] group"
+            >
+              <span class="text-xs text-ink-black/40">下一篇 →</span>
+              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1">
+                {next.title}
+              </p>
+            </a>
+          ) : <div />}
+        </div>
+      </nav>
+    )}
+
+    <div class="px-6 pb-16">
+      <Comments />
+    </div>
+  </article>
+</BaseLayout>

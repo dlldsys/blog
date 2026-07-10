@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AccentCard from '@components/AccentCard.astro';
+import DarkCard from '@components/DarkCard.astro';
+import PrimaryButton from '@components/PrimaryButton.astro';
+import GhostButton from '@components/GhostButton.astro';
+import { SOCIAL_LINKS } from '@consts';
+---
+
+<BaseLayout title="关于 — Notion 风格博客" description="关于这个博客">
+  <section class="mx-auto max-w-[800px] px-6 pt-16 pb-16">
+    <h1
+      class="font-semibold text-ink-black mb-6"
+      style="font-size: var(--text-display); line-height: 1.04; letter-spacing: -2.016px;"
+    >
+      关于
+    </h1>
+
+    <div class="prose mb-12">
+      <p>
+        这是一个基于 <strong>Astro</strong> 构建的静态博客，部署在 <strong>Cloudflare Pages</strong> 上，
+        设计灵感来自 <strong>Notion</strong> 的视觉语言。
+      </p>
+      <p>
+        评论区使用 <strong>Giscus</strong> 接入 GitHub Discussions，无需独立后端服务。
+        你可以用 GitHub 账号登录后留下评论。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <AccentCard color="marigold">
+        <h3 class="font-semibold text-ink-black mb-2" style="font-size: var(--text-heading-sm);">技术栈</h3>
+        <ul class="text-sm text-ink-black/70 space-y-1 list-none p-0">
+          <li>Astro 5.x — 静态站点生成</li>
+          <li>Tailwind CSS v4 — 样式系统</li>
+          <li>Giscus — GitHub 评论</li>
+          <li>Cloudflare Pages — 部署</li>
+        </ul>
+      </AccentCard>
+
+      <DarkCard>
+        <h3 class="font-semibold text-pure-white mb-2" style="font-size: var(--text-heading-sm);">设计系统</h3>
+        <ul class="text-sm text-pure-white/70 space-y-1 list-none p-0">
+          <li>温暖纸质画布 #f6f5f4</li>
+          <li>Notion Blue #0075de 主色</li>
+          <li>1px hairline 边框</li>
+          <li>12px 卡片圆角</li>
+        </ul>
+      </DarkCard>
+    </div>
+
+    <div class="flex gap-3">
+      <PrimaryButton href={SOCIAL_LINKS.github}>GitHub</PrimaryButton>
+      <GhostButton href="/blog">返回博客</GhostButton>
+    </div>
+  </section>
+</BaseLayout>

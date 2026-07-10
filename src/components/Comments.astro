@@ -1,0 +1,66 @@
+---
+import { GISCUS_CONFIG } from '@consts';
+---
+
+<section class="mx-auto mt-16 max-w-[720px]">
+  <h2
+    class="font-semibold text-ink-black mb-6"
+    style="font-size: var(--text-heading-sm); letter-spacing: -0.242px;"
+  >
+    评论
+  </h2>
+
+  <div
+    id="giscus-container"
+    data-repo={GISCUS_CONFIG.repo}
+    data-repo-id={GISCUS_CONFIG.repoId}
+    data-category={GISCUS_CONFIG.category}
+    data-category-id={GISCUS_CONFIG.categoryId}
+    data-mapping={GISCUS_CONFIG.mapping}
+    data-reactions-enabled={GISCUS_CONFIG.reactionsEnabled}
+    data-input-position={GISCUS_CONFIG.inputPosition}
+    data-theme={GISCUS_CONFIG.theme}
+    data-lang={GISCUS_CONFIG.lang}
+    data-loading="lazy"
+    class="min-h-[100px]"
+  >
+    <div class="flex items-center justify-center py-8 text-ink-black/40 text-sm">
+      评论加载中…
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.getElementById('giscus-container');
+  if (container) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', container.dataset.repo || '');
+            script.setAttribute('data-repo-id', container.dataset.repoId || '');
+            script.setAttribute('data-category', container.dataset.category || '');
+            script.setAttribute('data-category-id', container.dataset.categoryId || '');
+            script.setAttribute('data-mapping', container.dataset.mapping || 'pathname');
+            script.setAttribute('data-reactions-enabled', container.dataset.reactionsEnabled || '1');
+            script.setAttribute('data-input-position', container.dataset.inputPosition || 'bottom');
+            script.setAttribute('data-theme', container.dataset.theme || 'light');
+            script.setAttribute('data-lang', container.dataset.lang || 'zh-CN');
+            script.setAttribute('data-loading', 'lazy');
+            script.crossOrigin = 'anonymous';
+            script.async = true;
+
+            container.innerHTML = '';
+            container.appendChild(script);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(container);
+  }
+</script>

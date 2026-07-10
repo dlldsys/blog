@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/source-serif-pro/400.css";
+
+@theme {
+  /* Colors — from DESIGN.md */
+  --color-notion-blue: #0075de;
+  --color-paper-warmth: #f6f5f4;
+  --color-pure-white: #ffffff;
+  --color-ink-black: #000000;
+  --color-charcoal: #111111;
+  --color-stone: #757575;
+  --color-graphite: #615d59;
+  --color-slate: #696969;
+  --color-sky-tint: #e6f3fe;
+  --color-marigold: #ffb110;
+  --color-coral: #f64932;
+  --color-saffron: #e89d01;
+  --color-vermillion: #e32d14;
+  --color-mocha: #b18164;
+  --color-signal-blue: #097fe8;
+  --color-sky-wash: #62aef0;
+  --color-midnight-ink: #02093a;
+
+  /* Typography — Font Families */
+  --font-notioninter: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-lyon-text: 'Source Serif Pro', ui-serif, Georgia, serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --tracking-caption: 0.12px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.27;
+  --tracking-heading-sm: -0.242px;
+  --text-heading: 40px;
+  --leading-heading: 1.5;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.5;
+  --text-display-sm: 54px;
+  --leading-display-sm: 1.04;
+  --tracking-display-sm: -1.89px;
+  --text-display: 72px;
+  --leading-display: 1.21;
+  --tracking-display: -2.016px;
+  --text-display-lg: 96px;
+  --leading-display-lg: 1.04;
+  --tracking-display-lg: -4.608px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+}
+
+/* Base styles */
+html {
+  background-color: var(--color-paper-warmth);
+  color: var(--color-ink-black);
+  font-family: var(--font-notioninter);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Article prose styling */
+.prose {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--color-graphite);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.prose h1, .prose h2, .prose h3 {
+  color: var(--color-ink-black);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.prose h1 { font-size: var(--text-heading-lg); line-height: 1.21; }
+.prose h2 { font-size: var(--text-heading); line-height: 1.27; margin-top: 2em; }
+.prose h3 { font-size: var(--text-heading-sm); line-height: 1.27; margin-top: 1.5em; }
+
+.prose p { margin: 1em 0; }
+
+.prose a {
+  color: var(--color-notion-blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 117, 222, 0.3);
+  transition: border-color 200ms ease;
+}
+.prose a:hover { border-color: var(--color-notion-blue); }
+
+.prose code {
+  background: var(--color-sky-tint);
+  color: var(--color-notion-blue);
+  padding: 2px 6px;
+  border-radius: var(--radius-md);
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background: var(--color-midnight-ink);
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: var(--radius-xl);
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-notion-blue);
+  padding-left: 16px;
+  margin: 1.5em 0;
+  color: var(--color-slate);
+  font-family: var(--font-lyon-text);
+  font-size: 18px;
+  line-height: 1.56;
+}
+
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+  margin: 1em 0;
+}
+
+.prose img {
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  max-width: 100%;
+  height: auto;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 2em 0;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-sky-tint);
+  color: var(--color-notion-blue);
+}
+
+/* Giscus container override */
+.giscus {
+  margin-top: 48px;
+}
+.giscus-frame {
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

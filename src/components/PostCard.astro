@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+import Pill from './Pill.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  class?: string;
+}
+const { post, class: className = '' } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
+---
+
+<a
+  href={`/blog/${post.id}/`}
+  class={`group block rounded-xl border border-ink-black/[0.08] bg-pure-white p-6 transition-all duration-200 ease-out hover:border-ink-black/[0.15] hover:-translate-y-0.5 ${className}`}
+>
+  <div class="flex flex-wrap gap-2 mb-3">
+    {tags.slice(0, 3).map((tag, i) => (
+      <Pill color={tagColors[i % tagColors.length]}>{tag}</Pill>
+    ))}
+  </div>
+
+  <h3
+    class="font-semibold text-ink-black mb-2 group-hover:text-notion-blue transition-colors duration-200"
+    style="font-size: var(--text-heading-sm); line-height: 1.27; letter-spacing: -0.242px;"
+  >
+    {title}
+  </h3>
+
+  <p class="text-sm text-graphite mb-4 line-clamp-2" style="line-height: 1.43;">
+    {description}
+  </p>
+
+  <FormattedDate date={pubDate} class="text-xs text-ink-black/40" />
+</a>

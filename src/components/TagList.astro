@@ -1,0 +1,18 @@
+---
+import Pill from './Pill.astro';
+
+interface Props {
+  tags: string[];
+  class?: string;
+}
+const { tags, class: className = '' } = Astro.props;
+const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha', 'saffron', 'vermillion'] as const;
+---
+
+<div class={`flex flex-wrap gap-2 ${className}`}>
+  {tags.map((tag, i) => (
+    <a href={`/tags/${tag}/`}>
+      <Pill color={tagColors[i % tagColors.length]}>#{tag}</Pill>
+    </a>
+  ))}
+</div>

@@ -1,0 +1,82 @@
+---
+import { NAV_LINKS, SITE_TITLE } from '@consts';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+};
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 h-16 bg-paper-warmth/80 backdrop-blur-md border-b border-ink-black/[0.06]"
+>
+  <div class="mx-auto flex h-full max-w-[1440px] items-center justify-between px-6">
+    <a href="/" class="flex items-center gap-2 font-semibold text-ink-black text-base">
+      {SITE_TITLE}
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class={`rounded-lg px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+            isActive(link.href)
+              ? 'text-ink-black'
+              : 'text-ink-black/54 hover:text-ink-black'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href="/blog"
+        class="hidden sm:inline-flex items-center rounded-lg bg-notion-blue px-4 py-1.5 text-sm font-medium text-pure-white transition-all duration-200 hover:brightness-110"
+      >
+        阅读博客
+      </a>
+      <button
+        id="mobile-nav-toggle"
+        class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-ink-black/60 hover:text-ink-black"
+        aria-label="菜单"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="3" y1="6" x2="17" y2="6" />
+          <line x1="3" y1="10" x2="17" y2="10" />
+          <line x1="3" y1="14" x2="17" y2="14" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="md:hidden hidden border-t border-ink-black/[0.06] bg-paper-warmth"
+  >
+    <nav class="flex flex-col p-4 gap-1">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class={`rounded-lg px-4 py-3 text-sm font-medium ${
+            isActive(link.href)
+              ? 'bg-sky-tint text-notion-blue'
+              : 'text-ink-black/60'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('hidden');
+  });
+</script>
