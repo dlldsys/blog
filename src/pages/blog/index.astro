@@ -12,24 +12,25 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 
 <BaseLayout title="所有文章 — Notion 风格博客" description="所有博客文章列表">
   <section class="max-w-[900px] mx-auto px-6 pt-16 pb-8">
-    <SectionHeader
-      title="所有文章"
-      subtitle={`${posts.length} 篇文章`}
-    />
+    <SectionHeader title="所有文章" subtitle={`${posts.length} 篇文章`} />
   </section>
 
   <section class="max-w-[900px] mx-auto px-6 pb-8">
     <div class="flex flex-wrap gap-2">
       <a
         href="/blog"
-        class="rounded-full px-3.5 py-1 text-xs font-medium bg-ink-black text-pure-white"
+        class="rounded-full px-3.5 py-1 text-xs font-medium"
+        style="background: var(--c-text); color: var(--c-surface);"
       >
         全部
       </a>
       {allTags.map((tag) => (
         <a
           href={`/tags/${tag}/`}
-          class="rounded-full px-3.5 py-1 text-xs font-medium bg-sky-tint text-notion-blue hover:bg-sky-wash/30 transition-colors duration-200"
+          class="rounded-full px-3.5 py-1 text-xs font-medium transition-all duration-200"
+          style="background: var(--c-accent-soft); color: var(--c-accent);"
+          onmouseover="this.style.opacity='0.7'"
+          onmouseout="this.style.opacity='1'"
         >
           {tag}
         </a>

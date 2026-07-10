@@ -3,12 +3,12 @@ import { SITE_TITLE, SOCIAL_LINKS } from '@consts';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-ink-black/[0.08] mt-20">
-  <div class="mx-auto max-w-[1440px] px-6 py-12">
+<footer class="mt-20 border-t" style="border-color: var(--c-border);">
+  <div class="mx-auto max-w-[900px] px-6 py-12">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
-        <span class="font-semibold text-ink-black">{SITE_TITLE}</span>
-        <span class="text-sm text-ink-black/40">© {year}</span>
+        <span class="font-semibold" style="color: var(--c-text);">{SITE_TITLE}</span>
+        <span class="text-sm" style="color: color-mix(in srgb, var(--c-text) 40%, transparent);">© {year}</span>
       </div>
 
       <div class="flex items-center gap-4">
@@ -16,7 +16,10 @@ const year = new Date().getFullYear();
           href={SOCIAL_LINKS.github}
           target="_blank"
           rel="noopener"
-          class="text-ink-black/40 hover:text-ink-black transition-colors duration-200"
+          class="transition-colors duration-200"
+          style="color: color-mix(in srgb, var(--c-text) 40%, transparent);"
+          onmouseover="this.style.color='var(--c-text)'"
+          onmouseout="this.style.color='color-mix(in srgb, var(--c-text) 40%, transparent)'"
           aria-label="GitHub"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -25,7 +28,10 @@ const year = new Date().getFullYear();
         </a>
         <a
           href="/rss.xml"
-          class="text-sm text-ink-black/40 hover:text-ink-black transition-colors duration-200"
+          class="text-sm transition-colors duration-200"
+          style="color: color-mix(in srgb, var(--c-text) 40%, transparent);"
+          onmouseover="this.style.color='var(--c-text)'"
+          onmouseout="this.style.color='color-mix(in srgb, var(--c-text) 40%, transparent)'"
         >
           RSS
         </a>

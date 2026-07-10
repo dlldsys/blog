@@ -11,7 +11,8 @@ const Tag = href ? 'a' : 'button';
 <Tag
   href={href}
   type={href ? undefined : type}
-  class={`inline-flex items-center justify-center gap-2 rounded-lg bg-notion-blue px-4 py-1.5 text-sm font-medium text-pure-white transition-all duration-200 ease-out hover:brightness-110 active:scale-[0.98] ${className}`}
+  class={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-out hover:brightness-110 active:scale-[0.98] ${className}`}
+  style="background: var(--c-accent); color: var(--c-surface);"
 >
   <slot />
 </Tag>

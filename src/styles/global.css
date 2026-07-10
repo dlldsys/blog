@@ -4,7 +4,6 @@
 @import "@fontsource/source-serif-pro/600.css";
 
 @theme {
-  /* Colors — from DESIGN.md */
   --color-notion-blue: #0075de;
   --color-paper-warmth: #f6f5f4;
   --color-pure-white: #ffffff;
@@ -23,24 +22,9 @@
   --color-sky-wash: #62aef0;
   --color-midnight-ink: #02093a;
 
-  /* Typography — Font Families */
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Source Serif Pro', ui-serif, Georgia, serif;
 
-  /* Spacing */
-  --spacing-4: 4px;
-  --spacing-8: 8px;
-  --spacing-12: 12px;
-  --spacing-16: 16px;
-  --spacing-20: 20px;
-  --spacing-24: 24px;
-  --spacing-28: 28px;
-  --spacing-32: 32px;
-  --spacing-36: 36px;
-  --spacing-64: 64px;
-  --spacing-80: 80px;
-
-  /* Border Radius */
   --radius-md: 4px;
   --radius-lg: 8px;
   --radius-xl: 12px;
@@ -48,13 +32,97 @@
 }
 
 /* ============================================
+   Semantic Variables (default = notion theme)
+   ============================================ */
+
+:root {
+  --c-bg: var(--color-paper-warmth);
+  --c-surface: var(--color-pure-white);
+  --c-surface-soft: var(--color-sky-tint);
+  --c-text: var(--color-ink-black);
+  --c-text-soft: var(--color-graphite);
+  --c-accent: var(--color-notion-blue);
+  --c-accent-soft: var(--color-sky-tint);
+  --c-border: rgba(0, 0, 0, 0.08);
+  --c-code-bg: var(--color-midnight-ink);
+  --c-code-text: #e1e4e8;
+  --c-prose: #37352f;
+  --font-body: var(--font-sans);
+  --font-head: var(--font-sans);
+  --r-card: 12px;
+}
+
+/* ============================================
+   Theme: Cal.com (monochrome utility)
+   ============================================ */
+
+html[data-theme="cal"] {
+  --c-bg: #f4f4f4;
+  --c-surface: #ffffff;
+  --c-surface-soft: #f4f4f4;
+  --c-text: #101010;
+  --c-text-soft: #6b7280;
+  --c-accent: #101010;
+  --c-accent-soft: #e5e7eb;
+  --c-border: rgba(0, 0, 0, 0.08);
+  --c-code-bg: #1a1a1a;
+  --c-code-text: #e5e5e5;
+  --c-prose: #242424;
+  --font-body: 'Poppins', var(--font-sans);
+  --font-head: 'Poppins', var(--font-sans);
+  --r-card: 12px;
+}
+
+/* ============================================
+   Theme: shadcn/ui (clinical developer)
+   ============================================ */
+
+html[data-theme="shadcn"] {
+  --c-bg: #f5f5f5;
+  --c-surface: #ffffff;
+  --c-surface-soft: #fafafa;
+  --c-text: #0a0a0a;
+  --c-text-soft: #737373;
+  --c-accent: #0a0a0a;
+  --c-accent-soft: #f5f5f5;
+  --c-border: #e5e5e5;
+  --c-code-bg: #0a0a0a;
+  --c-code-text: #fafafa;
+  --c-prose: #171717;
+  --font-body: var(--font-sans);
+  --font-head: var(--font-sans);
+  --r-card: 24px;
+}
+
+/* ============================================
+   Theme: Superr (warm schoolyard)
+   ============================================ */
+
+html[data-theme="superr"] {
+  --c-bg: #fdfbf9;
+  --c-surface: #fdfbf9;
+  --c-surface-soft: #f7efe9;
+  --c-text: #171717;
+  --c-text-soft: #6b6b6b;
+  --c-accent: #ff6f1e;
+  --c-accent-soft: #f7efe9;
+  --c-border: #171717;
+  --c-code-bg: #2b1a07;
+  --c-code-text: #fdfbf9;
+  --c-prose: #2b1a07;
+  --font-body: var(--font-sans);
+  --font-head: 'Fraunces', Georgia, serif;
+  --r-card: 12px;
+}
+
+/* ============================================
    Base
    ============================================ */
 
 html {
-  background-color: var(--color-paper-warmth);
-  color: var(--color-ink-black);
-  font-family: var(--font-sans);
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -68,15 +136,13 @@ body {
   min-height: 100vh;
 }
 
-/* Font utility helpers */
 .font-serif {
   font-family: var(--font-serif);
 }
 
-/* Selection */
 ::selection {
-  background: var(--color-sky-tint);
-  color: var(--color-notion-blue);
+  background: var(--c-accent-soft);
+  color: var(--c-accent);
 }
 
 /* ============================================
@@ -125,50 +191,44 @@ body {
   font-weight: 600;
 }
 
-.text-subheading {
-  font-size: 20px;
-  line-height: 1.4;
-  font-weight: 500;
-}
-
-.text-body {
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.text-body-sm {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.text-caption {
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: 0.01em;
-}
+.text-subheading { font-size: 20px; line-height: 1.4; font-weight: 500; }
+.text-body { font-size: 16px; line-height: 1.6; }
+.text-body-sm { font-size: 14px; line-height: 1.5; }
+.text-caption { font-size: 12px; line-height: 1.4; letter-spacing: 0.01em; }
 
 /* ============================================
-   Prose — Article Body
+   Semantic utility helpers
+   ============================================ */
+
+.bg-page { background-color: var(--c-bg); }
+.bg-card { background-color: var(--c-surface); }
+.bg-soft { background-color: var(--c-surface-soft); }
+.bg-accent { background-color: var(--c-accent); }
+.bg-accent-soft { background-color: var(--c-accent-soft); }
+
+.text-main { color: var(--c-text); }
+.text-soft { color: var(--c-text-soft); }
+.text-accent { color: var(--c-accent); }
+
+.border-line { border-color: var(--c-border); }
+
+/* ============================================
+   Prose — Article Body (uses semantic vars)
    ============================================ */
 
 .prose {
   max-width: 720px;
   margin: 0 auto;
-  color: #37352f;
+  color: var(--c-prose);
   font-size: 17px;
   line-height: 1.75;
   letter-spacing: -0.003em;
 }
 
-.prose > *:first-child {
-  margin-top: 0;
-}
+.prose > *:first-child { margin-top: 0; }
 
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4 {
-  color: var(--color-ink-black);
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--c-text);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-top: 2.5em;
@@ -176,71 +236,44 @@ body {
   line-height: 1.25;
 }
 
-.prose h1 {
-  font-size: 2em;
-}
+.prose h1 { font-size: 2em; }
+.prose h2 { font-size: 1.5em; padding-bottom: 0.3em; border-bottom: 1px solid var(--c-border); }
+.prose h3 { font-size: 1.25em; }
+.prose h4 { font-size: 1em; font-weight: 600; }
 
-.prose h2 {
-  font-size: 1.5em;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.prose h3 {
-  font-size: 1.25em;
-}
-
-.prose h4 {
-  font-size: 1em;
-  font-weight: 600;
-}
-
-.prose p {
-  margin: 1.2em 0;
-}
+.prose p { margin: 1.2em 0; }
 
 .prose a {
-  color: var(--color-notion-blue);
+  color: var(--c-accent);
   text-decoration: none;
-  border-bottom: 1px solid rgba(0, 117, 222, 0.25);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-accent) 25%, transparent);
   transition: border-color 200ms ease, color 200ms ease;
 }
-.prose a:hover {
-  border-color: var(--color-notion-blue);
-  color: #097fe8;
-}
+.prose a:hover { border-bottom-color: var(--c-accent); }
 
-.prose strong {
-  color: var(--color-ink-black);
-  font-weight: 700;
-}
+.prose strong { color: var(--c-text); font-weight: 700; }
+.prose em { font-style: italic; }
 
-.prose em {
-  font-style: italic;
-}
-
-/* Inline code */
 .prose code {
-  background: var(--color-sky-tint);
-  color: #097fe8;
+  background: var(--c-accent-soft);
+  color: var(--c-accent);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.85em;
-  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
 }
 
-/* Code blocks — override Shiki inline styles */
 .prose pre,
 .prose pre.astro-code {
-  background: var(--color-midnight-ink) !important;
-  color: #e1e4e8 !important;
+  background: var(--c-code-bg) !important;
+  color: var(--c-code-text) !important;
   padding: 20px 24px !important;
-  border-radius: 12px !important;
+  border-radius: var(--r-card) !important;
   overflow-x: auto;
   margin: 1.8em 0;
   font-size: 14px;
   line-height: 1.6;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--c-border);
 }
 
 .prose pre code {
@@ -251,98 +284,69 @@ body {
   font-size: inherit !important;
 }
 
-/* Blockquote */
 .prose blockquote {
-  border-left: 3px solid var(--color-notion-blue);
+  border-left: 3px solid var(--c-accent);
   padding: 4px 0 4px 20px;
   margin: 1.8em 0;
-  color: var(--color-slate);
+  color: var(--c-text-soft);
   font-family: var(--font-serif);
   font-size: 18px;
   line-height: 1.6;
   font-style: italic;
 }
 
-/* Lists */
-.prose ul,
-.prose ol {
-  padding-left: 1.6em;
-  margin: 1.2em 0;
-}
+.prose ul, .prose ol { padding-left: 1.6em; margin: 1.2em 0; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li { margin: 0.5em 0; }
+.prose li::marker { color: var(--c-text); opacity: 0.4; }
 
-.prose ul {
-  list-style: disc;
-}
-
-.prose ol {
-  list-style: decimal;
-}
-
-.prose li {
-  margin: 0.5em 0;
-}
-
-.prose li::marker {
-  color: var(--color-ink-black);
-  opacity: 0.4;
-}
-
-/* Tables */
 .prose table {
   width: 100%;
   border-collapse: collapse;
   margin: 2em 0;
   font-size: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--c-border);
   border-radius: 8px;
   overflow: hidden;
 }
 
-.prose thead {
-  background: rgba(0, 0, 0, 0.02);
-}
+.prose thead { background: color-mix(in srgb, var(--c-text) 3%, transparent); }
 
 .prose th {
   text-align: left;
   padding: 10px 16px;
   font-weight: 600;
-  color: var(--color-ink-black);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--c-text);
+  border-bottom: 1px solid var(--c-border);
   font-size: 14px;
 }
 
 .prose td {
   padding: 10px 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  color: #37352f;
+  border-bottom: 1px solid color-mix(in srgb, var(--c-text) 5%, transparent);
+  color: var(--c-prose);
 }
 
-.prose tr:last-child td {
-  border-bottom: none;
-}
+.prose tr:last-child td { border-bottom: none; }
+.prose tr:hover td { background: color-mix(in srgb, var(--c-accent) 3%, transparent); }
 
-.prose tr:hover td {
-  background: rgba(0, 117, 222, 0.02);
-}
-
-/* Images */
 .prose img {
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--r-card);
+  border: 1px solid var(--c-border);
   max-width: 100%;
   height: auto;
   margin: 2em 0;
 }
 
-/* Horizontal rule */
 .prose hr {
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid var(--c-border);
   margin: 3em 0;
 }
 
 /* ============================================
-   Line clamp
+   Utilities
    ============================================ */
 
 .line-clamp-2 {
@@ -352,42 +356,31 @@ body {
   overflow: hidden;
 }
 
-/* ============================================
-   Giscus
-   ============================================ */
-
-.giscus {
-  margin-top: 48px;
-}
+.giscus { margin-top: 48px; }
 .giscus-frame {
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--r-card);
+  border: 1px solid var(--c-border) !important;
 }
-
-/* ============================================
-   Animations
-   ============================================ */
 
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out both;
-}
+.animate-fade-in-up { animation: fade-in-up 0.6s ease-out both; }
 
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+.animate-fade-in { animation: fade-in 0.4s ease-out both; }
 
-.animate-fade-in {
-  animation: fade-in 0.4s ease-out both;
+/* Superr theme: add Google Fonts */
+html[data-theme="superr"] .font-head,
+html[data-theme="superr"] .text-display,
+html[data-theme="superr"] .text-display-sm,
+html[data-theme="superr"] .text-display-lg,
+html[data-theme="superr"] .text-heading-lg,
+html[data-theme="superr"] .text-heading,
+html[data-theme="superr"] .text-heading-sm {
+  font-family: 'Fraunces', Georgia, serif;
 }

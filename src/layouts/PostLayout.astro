@@ -23,7 +23,6 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 
 <BaseLayout title={`${title} — Notion 风格博客`} description={description}>
   <article>
-    <!-- Article Header -->
     <header class="max-w-[720px] mx-auto px-6 pt-16 pb-10">
       <div class="flex flex-wrap gap-2 mb-6">
         {tags.map((tag, i) => (
@@ -33,15 +32,15 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
         ))}
       </div>
 
-      <h1 class="text-display-sm text-ink-black mb-4">
+      <h1 class="text-display-sm mb-4" style="color: var(--c-text);">
         {title}
       </h1>
 
-      <p class="font-serif text-graphite text-lg leading-relaxed mb-6">
+      <p class="font-serif text-lg leading-relaxed mb-6" style="color: var(--c-text-soft);">
         {description}
       </p>
 
-      <div class="flex items-center gap-3 text-sm text-ink-black/40">
+      <div class="flex items-center gap-3 text-sm" style="color: color-mix(in srgb, var(--c-text) 40%, transparent);">
         <FormattedDate date={pubDate} />
         <span>·</span>
         <span>{readingTime} 分钟阅读</span>
@@ -54,22 +53,23 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
       </div>
     </header>
 
-    <!-- Article Body -->
     <div class="prose px-6 pb-12">
       <slot />
     </div>
 
-    <!-- Prev/Next Navigation -->
     {(prev || next) && (
-      <nav class="max-w-[720px] mx-auto px-6 py-8 border-t border-ink-black/[0.08]">
+      <nav class="max-w-[720px] mx-auto px-6 py-8 border-t" style="border-color: var(--c-border);">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prev ? (
             <a
               href={`/blog/${prev.slug}/`}
-              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-5 transition-all duration-200 hover:border-ink-black/[0.15] group"
+              class="border p-5 transition-all duration-200 group"
+              style="background: var(--c-surface); border-color: var(--c-border); border-radius: var(--r-card);"
+              onmouseover="this.style.borderColor='color-mix(in srgb, var(--c-text) 15%, transparent)'"
+              onmouseout="this.style.borderColor='var(--c-border)'"
             >
-              <span class="text-xs text-ink-black/40">← 上一篇</span>
-              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1.5">
+              <span class="text-xs" style="color: color-mix(in srgb, var(--c-text) 40%, transparent);">← 上一篇</span>
+              <p class="text-sm font-medium mt-1.5" style="color: var(--c-text);">
                 {prev.title}
               </p>
             </a>
@@ -77,10 +77,13 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
           {next ? (
             <a
               href={`/blog/${next.slug}/`}
-              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-5 text-right transition-all duration-200 hover:border-ink-black/[0.15] group"
+              class="border p-5 text-right transition-all duration-200 group"
+              style="background: var(--c-surface); border-color: var(--c-border); border-radius: var(--r-card);"
+              onmouseover="this.style.borderColor='color-mix(in srgb, var(--c-text) 15%, transparent)'"
+              onmouseout="this.style.borderColor='var(--c-border)'"
             >
-              <span class="text-xs text-ink-black/40">下一篇 →</span>
-              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1.5">
+              <span class="text-xs" style="color: color-mix(in srgb, var(--c-text) 40%, transparent);">下一篇 →</span>
+              <p class="text-sm font-medium mt-1.5" style="color: var(--c-text);">
                 {next.title}
               </p>
             </a>
@@ -89,7 +92,6 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
       </nav>
     )}
 
-    <!-- Comments -->
     <div class="px-6 pb-16">
       <Comments />
     </div>

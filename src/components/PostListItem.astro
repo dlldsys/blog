@@ -13,23 +13,29 @@ const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
 ---
 
 <article
-  class={`flex flex-col md:flex-row gap-4 md:gap-8 rounded-xl border border-ink-black/[0.08] bg-pure-white p-6 transition-all duration-200 ease-out hover:border-ink-black/[0.15] ${className}`}
+  class={`flex flex-col md:flex-row gap-4 md:gap-8 border p-6 transition-all duration-200 ease-out ${className}`}
+  style="background: var(--c-surface); border-color: var(--c-border); border-radius: var(--r-card);"
+  onmouseover="this.style.borderColor='color-mix(in srgb, var(--c-text) 15%, transparent)'"
+  onmouseout="this.style.borderColor='var(--c-border)'"
 >
   <div class="flex-shrink-0 md:w-28">
-    <FormattedDate date={pubDate} class="text-sm text-ink-black/40 font-medium" />
+    <FormattedDate date={pubDate} class="text-sm font-medium" style="color: color-mix(in srgb, var(--c-text) 40%, transparent);" />
   </div>
 
   <div class="flex-1 min-w-0">
-    <h3 class="text-heading-sm text-ink-black mb-2">
+    <h3 class="text-heading-sm mb-2" style="color: var(--c-text);">
       <a
         href={`/blog/${post.id}/`}
-        class="hover:text-notion-blue transition-colors duration-200"
+        class="transition-colors duration-200"
+        style="color: var(--c-text);"
+        onmouseover="this.style.color='var(--c-accent)'"
+        onmouseout="this.style.color='var(--c-text)'"
       >
         {title}
       </a>
     </h3>
 
-    <p class="text-sm text-graphite mb-3 leading-relaxed">
+    <p class="text-sm mb-3 leading-relaxed" style="color: var(--c-text-soft);">
       {description}
     </p>
 

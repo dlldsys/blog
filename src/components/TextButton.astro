@@ -9,7 +9,10 @@ const Tag = href ? 'a' : 'button';
 
 <Tag
   href={href}
-  class={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium text-ink-black/95 transition-all duration-200 ease-out hover:bg-ink-black/5 active:scale-[0.98] ${className}`}
+  class={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-out active:scale-[0.98] ${className}`}
+  style="color: var(--c-text);"
+  onmouseover="this.style.background='color-mix(in srgb, var(--c-text) 5%, transparent)'"
+  onmouseout="this.style.background='transparent'"
 >
   <slot />
 </Tag>

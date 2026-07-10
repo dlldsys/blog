@@ -7,7 +7,8 @@ const { class: className = '', as: Tag = 'div' } = Astro.props;
 ---
 
 <Tag
-  class={`rounded-xl border border-ink-black/[0.08] bg-pure-white p-6 transition-all duration-200 ease-out ${className}`}
+  class={`border p-6 transition-all duration-200 ease-out ${className}`}
+  style={`background: var(--c-surface); border-color: var(--c-border); border-radius: var(--r-card);`}
 >
   <slot />
 </Tag>

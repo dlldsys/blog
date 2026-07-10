@@ -14,7 +14,10 @@ const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
 
 <a
   href={`/blog/${post.id}/`}
-  class={`group block rounded-xl border border-ink-black/[0.08] bg-pure-white p-6 transition-all duration-200 ease-out hover:border-ink-black/[0.15] hover:-translate-y-0.5 ${className}`}
+  class={`group block border p-6 transition-all duration-200 ease-out hover:-translate-y-0.5 ${className}`}
+  style="background: var(--c-surface); border-color: var(--c-border); border-radius: var(--r-card);"
+  onmouseover="this.style.borderColor='color-mix(in srgb, var(--c-text) 15%, transparent)'"
+  onmouseout="this.style.borderColor='var(--c-border)'"
 >
   <div class="flex flex-wrap gap-2 mb-3">
     {tags.slice(0, 3).map((tag, i) => (
@@ -22,13 +25,13 @@ const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
     ))}
   </div>
 
-  <h3 class="text-heading-sm text-ink-black mb-2 group-hover:text-notion-blue transition-colors duration-200">
+  <h3 class="text-heading-sm mb-2 transition-colors duration-200" style="color: var(--c-text);">
     {title}
   </h3>
 
-  <p class="text-sm text-graphite mb-4 line-clamp-2 leading-relaxed">
+  <p class="text-sm mb-4 line-clamp-2 leading-relaxed" style="color: var(--c-text-soft);">
     {description}
   </p>
 
-  <FormattedDate date={pubDate} class="text-xs text-ink-black/40" />
+  <FormattedDate date={pubDate} class="text-xs" style="color: color-mix(in srgb, var(--c-text) 40%, transparent);" />
 </a>

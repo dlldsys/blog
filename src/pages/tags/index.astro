@@ -11,13 +11,13 @@ posts.forEach((post) => {
   });
 });
 const tags = [...tagMap.entries()].sort((a, b) => b[1] - a[1]);
-const tagColorClasses = [
-  'bg-marigold text-ink-black',
-  'bg-coral text-pure-white',
-  'bg-sky-wash text-ink-black',
-  'bg-mocha text-pure-white',
-  'bg-saffron text-ink-black',
-  'bg-vermillion text-pure-white',
+const tagColorStyles = [
+  'background: #ffb110; color: #000;',
+  'background: #f64932; color: #fff;',
+  'background: #62aef0; color: #000;',
+  'background: #b18164; color: #fff;',
+  'background: #e89d01; color: #000;',
+  'background: #e32d14; color: #fff;',
 ];
 ---
 
@@ -29,7 +29,8 @@ const tagColorClasses = [
       {tags.map(([tag, count], i) => (
         <a
           href={`/tags/${tag}/`}
-          class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 ${tagColorClasses[i % tagColorClasses.length]}`}
+          class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+          style={tagColorStyles[i % tagColorStyles.length]}
         >
           #{tag}
           <span class="text-xs opacity-60">{count}</span>

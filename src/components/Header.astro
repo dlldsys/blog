@@ -9,12 +9,14 @@ const isActive = (href: string) => {
 ---
 
 <header
-  class="fixed top-0 left-0 right-0 z-50 h-14 bg-paper-warmth/90 backdrop-blur-sm border-b border-ink-black/[0.08]"
+  class="fixed top-0 left-0 right-0 z-50 h-14 backdrop-blur-sm border-b"
+  style="background: color-mix(in srgb, var(--c-bg) 90%, transparent); border-color: var(--c-border);"
 >
   <div class="mx-auto flex h-full max-w-[900px] items-center justify-between px-6">
     <a
       href="/"
-      class="font-semibold text-ink-black text-[15px] tracking-tight"
+      class="font-semibold text-[15px] tracking-tight"
+      style="color: var(--c-text);"
     >
       {SITE_TITLE}
     </a>
@@ -23,15 +25,14 @@ const isActive = (href: string) => {
       {NAV_LINKS.map((link) => (
         <a
           href={link.href}
-          class={`relative text-sm transition-colors duration-200 ${
-            isActive(link.href)
-              ? 'text-ink-black font-medium'
-              : 'text-ink-black/50 hover:text-ink-black'
-          }`}
+          class="relative text-sm transition-colors duration-200"
+          style={isActive(link.href) ? 'color: var(--c-text); font-weight: 500;' : 'color: color-mix(in srgb, var(--c-text) 50%, transparent);'}
+          onmouseover={isActive(link.href) ? '' : 'this.style.color="var(--c-text)"'}
+          onmouseout={isActive(link.href) ? '' : 'this.style.color="color-mix(in srgb, var(--c-text) 50%, transparent)"'}
         >
           {link.label}
           {isActive(link.href) && (
-            <span class="absolute -bottom-[18px] left-0 right-0 h-[2px] bg-ink-black rounded-full"></span>
+            <span class="absolute -bottom-[18px] left-0 right-0 h-[2px] rounded-full" style="background: var(--c-text);"></span>
           )}
         </a>
       ))}
@@ -39,7 +40,8 @@ const isActive = (href: string) => {
 
     <button
       id="mobile-nav-toggle"
-      class="md:hidden inline-flex items-center justify-center w-9 h-9 -mr-2 text-ink-black"
+      class="md:hidden inline-flex items-center justify-center w-9 h-9 -mr-2"
+      style="color: var(--c-text);"
       aria-label="菜单"
     >
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
@@ -52,17 +54,15 @@ const isActive = (href: string) => {
 
   <div
     id="mobile-nav"
-    class="md:hidden hidden border-t border-ink-black/[0.08] bg-paper-warmth"
+    class="md:hidden hidden border-t"
+    style="background: var(--c-bg); border-color: var(--c-border);"
   >
     <nav class="flex flex-col px-6 py-3">
       {NAV_LINKS.map((link) => (
         <a
           href={link.href}
-          class={`py-2.5 text-sm transition-colors duration-200 ${
-            isActive(link.href)
-              ? 'text-ink-black font-medium'
-              : 'text-ink-black/50'
-          }`}
+          class="py-2.5 text-sm transition-colors duration-200"
+          style={isActive(link.href) ? 'color: var(--c-text); font-weight: 500;' : 'color: color-mix(in srgb, var(--c-text) 50%, transparent);'}
         >
           {link.label}
         </a>

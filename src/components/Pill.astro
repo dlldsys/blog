@@ -1,23 +1,26 @@
 ---
 interface Props {
-  color?: 'marigold' | 'coral' | 'sky-wash' | 'sky-tint' | 'midnight-ink' | 'mocha' | 'saffron' | 'vermillion';
+  color?: 'marigold' | 'coral' | 'sky-wash' | 'sky-tint' | 'midnight-ink' | 'mocha' | 'saffron' | 'vermillion' | 'accent' | 'accent-soft';
   class?: string;
 }
-const { color = 'sky-tint', class: className = '' } = Astro.props;
+const { color = 'accent-soft', class: className = '' } = Astro.props;
 const colorMap: Record<string, string> = {
-  'marigold': 'bg-marigold text-ink-black',
-  'coral': 'bg-coral text-pure-white',
-  'sky-wash': 'bg-sky-wash text-ink-black',
-  'sky-tint': 'bg-sky-tint text-notion-blue',
-  'midnight-ink': 'bg-midnight-ink text-pure-white',
-  'mocha': 'bg-mocha text-pure-white',
-  'saffron': 'bg-saffron text-ink-black',
-  'vermillion': 'bg-vermillion text-pure-white',
+  'marigold': 'background: #ffb110; color: #000;',
+  'coral': 'background: #f64932; color: #fff;',
+  'sky-wash': 'background: #62aef0; color: #000;',
+  'sky-tint': 'background: #e6f3fe; color: #0075de;',
+  'midnight-ink': 'background: #02093a; color: #fff;',
+  'mocha': 'background: #b18164; color: #fff;',
+  'saffron': 'background: #e89d01; color: #000;',
+  'vermillion': 'background: #e32d14; color: #fff;',
+  'accent': 'background: var(--c-accent); color: var(--c-surface);',
+  'accent-soft': 'background: var(--c-accent-soft); color: var(--c-accent);',
 };
 ---
 
 <span
-  class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${colorMap[color]} ${className}`}
+  class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${className}`}
+  style={colorMap[color]}
 >
   <slot />
 </span>

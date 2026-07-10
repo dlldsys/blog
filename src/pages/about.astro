@@ -9,7 +9,7 @@ import { SOCIAL_LINKS } from '@consts';
 
 <BaseLayout title="关于 — Notion 风格博客" description="关于这个博客">
   <section class="max-w-[720px] mx-auto px-6 pt-16 pb-16">
-    <h1 class="text-display text-ink-black mb-8">
+    <h1 class="text-display mb-8" style="color: var(--c-text);">
       关于
     </h1>
 
@@ -26,8 +26,8 @@ import { SOCIAL_LINKS } from '@consts';
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
       <AccentCard color="marigold">
-        <h3 class="text-heading-sm text-ink-black mb-3">技术栈</h3>
-        <ul class="text-sm text-ink-black/70 space-y-1.5 list-none p-0 m-0">
+        <h3 class="text-heading-sm mb-3" style="color: #000;">技术栈</h3>
+        <ul class="text-sm space-y-1.5 list-none p-0 m-0" style="color: rgba(0,0,0,0.7);">
           <li>Astro 5.x — 静态站点生成</li>
           <li>Tailwind CSS v4 — 样式系统</li>
           <li>Giscus — GitHub 评论</li>
@@ -36,12 +36,12 @@ import { SOCIAL_LINKS } from '@consts';
       </AccentCard>
 
       <DarkCard>
-        <h3 class="text-heading-sm text-pure-white mb-3">设计系统</h3>
-        <ul class="text-sm text-pure-white/70 space-y-1.5 list-none p-0 m-0">
-          <li>温暖纸质画布 #f6f5f4</li>
-          <li>Notion Blue #0075de 主色</li>
+        <h3 class="text-heading-sm mb-3" style="color: var(--c-code-text);">设计系统</h3>
+        <ul class="text-sm space-y-1.5 list-none p-0 m-0" style="color: color-mix(in srgb, var(--c-code-text) 70%, var(--c-code-bg));">
+          <li>温暖纸质画布</li>
+          <li>4 套可切换主题</li>
           <li>1px hairline 边框</li>
-          <li>12px 卡片圆角</li>
+          <li>语义化 CSS 变量</li>
         </ul>
       </DarkCard>
     </div>
