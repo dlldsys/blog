@@ -9,10 +9,10 @@ export const NAV_LINKS = [
 ];
 
 export const GISCUS_CONFIG = {
-  repo: 'your-username/your-blog-repo',
-  repoId: 'R_kgDXXXXXXXX',
+  repo: 'dlldsys/blog',
+  repoId: 'R_kgDOTUfW1w',
   category: 'Announcements',
-  categoryId: 'DIC_kwDXXXXXXXX',
+  categoryId: 'DIC_kwDOTUfW184DA5yr',
   mapping: 'pathname' as const,
   reactionsEnabled: '1',
   inputPosition: 'bottom' as const,
@@ -21,8 +21,7 @@ export const GISCUS_CONFIG = {
 };
 
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/your-username',
-  twitter: 'https://twitter.com/your-username',
+  github: 'https://github.com/dlldsys',
 };
 
 export const POSTS_PER_PAGE = 6;

@@ -15,15 +15,12 @@ const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
 <article
   class={`flex flex-col md:flex-row gap-4 md:gap-8 rounded-xl border border-ink-black/[0.08] bg-pure-white p-6 transition-all duration-200 ease-out hover:border-ink-black/[0.15] ${className}`}
 >
-  <div class="flex-shrink-0 md:w-32">
+  <div class="flex-shrink-0 md:w-28">
     <FormattedDate date={pubDate} class="text-sm text-ink-black/40 font-medium" />
   </div>
 
-  <div class="flex-1">
-    <h3
-      class="font-semibold text-ink-black mb-2"
-      style="font-size: var(--text-heading-sm); line-height: 1.27; letter-spacing: -0.242px;"
-    >
+  <div class="flex-1 min-w-0">
+    <h3 class="text-heading-sm text-ink-black mb-2">
       <a
         href={`/blog/${post.id}/`}
         class="hover:text-notion-blue transition-colors duration-200"
@@ -32,7 +29,7 @@ const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
       </a>
     </h3>
 
-    <p class="text-sm text-graphite mb-3" style="line-height: 1.43;">
+    <p class="text-sm text-graphite mb-3 leading-relaxed">
       {description}
     </p>
 

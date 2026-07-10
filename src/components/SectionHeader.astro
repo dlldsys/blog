@@ -8,18 +8,12 @@ interface Props {
 const { title, subtitle, align = 'left', class: className = '' } = Astro.props;
 ---
 
-<div class={`flex flex-col gap-2 ${align === 'center' ? 'items-center text-center' : 'items-start'} ${className}`}>
-  <h2
-    class="font-semibold text-ink-black"
-    style="font-size: var(--text-heading-lg); line-height: 1.04; letter-spacing: -1.89px;"
-  >
+<div class={`flex flex-col gap-3 ${align === 'center' ? 'items-center text-center' : 'items-start'} ${className}`}>
+  <h2 class="text-heading-lg text-ink-black">
     {title}
   </h2>
   {subtitle && (
-    <p
-      class="font-lyon-text text-graphite"
-      style="font-size: 18px; line-height: 1.56;"
-    >
+    <p class="font-serif text-graphite text-lg leading-relaxed">
       {subtitle}
     </p>
   )}

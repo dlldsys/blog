@@ -22,10 +22,10 @@ const tagColorClasses = [
 ---
 
 <BaseLayout title="标签 — Notion 风格博客" description="按标签浏览文章">
-  <section class="mx-auto max-w-[1440px] px-6 pt-16 pb-16">
+  <section class="max-w-[900px] mx-auto px-6 pt-16 pb-16">
     <SectionHeader title="标签" subtitle={`${tags.length} 个标签`} />
 
-    <div class="flex flex-wrap gap-3 mt-8">
+    <div class="flex flex-wrap gap-3 mt-10">
       {tags.map(([tag, count], i) => (
         <a
           href={`/tags/${tag}/`}

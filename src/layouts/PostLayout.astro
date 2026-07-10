@@ -16,14 +16,15 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
 const tagColors = ['marigold', 'coral', 'sky-wash', 'mocha'] as const;
 
 const content = post.body ?? '';
-const wordsPerMinute = 200;
+const wordsPerMinute = 300;
 const wordCount = content.split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 ---
 
 <BaseLayout title={`${title} — Notion 风格博客`} description={description}>
   <article>
-    <header class="mx-auto max-w-[720px] px-6 pt-16 pb-8">
+    <!-- Article Header -->
+    <header class="max-w-[720px] mx-auto px-6 pt-16 pb-10">
       <div class="flex flex-wrap gap-2 mb-6">
         {tags.map((tag, i) => (
           <a href={`/tags/${tag}/`}>
@@ -32,17 +33,11 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
         ))}
       </div>
 
-      <h1
-        class="font-semibold text-ink-black mb-4"
-        style="font-size: var(--text-display); line-height: 1.04; letter-spacing: -2.016px;"
-      >
+      <h1 class="text-display-sm text-ink-black mb-4">
         {title}
       </h1>
 
-      <p
-        class="font-lyon-text text-graphite mb-6"
-        style="font-size: 18px; line-height: 1.56;"
-      >
+      <p class="font-serif text-graphite text-lg leading-relaxed mb-6">
         {description}
       </p>
 
@@ -59,20 +54,22 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
       </div>
     </header>
 
+    <!-- Article Body -->
     <div class="prose px-6 pb-12">
       <slot />
     </div>
 
+    <!-- Prev/Next Navigation -->
     {(prev || next) && (
-      <nav class="mx-auto max-w-[720px] px-6 py-8 border-t border-ink-black/[0.08]">
+      <nav class="max-w-[720px] mx-auto px-6 py-8 border-t border-ink-black/[0.08]">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prev ? (
             <a
               href={`/blog/${prev.slug}/`}
-              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-4 transition-all duration-200 hover:border-ink-black/[0.15] group"
+              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-5 transition-all duration-200 hover:border-ink-black/[0.15] group"
             >
               <span class="text-xs text-ink-black/40">← 上一篇</span>
-              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1">
+              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1.5">
                 {prev.title}
               </p>
             </a>
@@ -80,10 +77,10 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
           {next ? (
             <a
               href={`/blog/${next.slug}/`}
-              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-4 text-right transition-all duration-200 hover:border-ink-black/[0.15] group"
+              class="rounded-xl border border-ink-black/[0.08] bg-pure-white p-5 text-right transition-all duration-200 hover:border-ink-black/[0.15] group"
             >
               <span class="text-xs text-ink-black/40">下一篇 →</span>
-              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1">
+              <p class="text-sm font-medium text-ink-black group-hover:text-notion-blue transition-colors mt-1.5">
                 {next.title}
               </p>
             </a>
@@ -92,6 +89,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
       </nav>
     )}
 
+    <!-- Comments -->
     <div class="px-6 pb-16">
       <Comments />
     </div>
