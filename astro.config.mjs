@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://your-blog.pages.dev',
+  site: 'https://gmblog.dlld319.asia',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
